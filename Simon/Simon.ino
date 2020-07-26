@@ -1,5 +1,5 @@
 //These pins will trigger the lights (more lights = higher difficulty)
-int pin = {2,3,4,5,6,7};
+int pin[] = {2,3,5,7,9,11};
 //This variable (pause) will control how fast the lights will blink (decreases as lvls increase)
 int pause = 200;
 //Random value will be used to to trigger lights at random
@@ -8,7 +8,7 @@ int randNum;
 int startLvl = 0;
 int maxLvl = 5;
 //Array to hold the pin numbers (dictates the light sequence the user will repeat) 
-int lightSeq[maxLvl];
+int lightSeq[5];
 //Boolean: Use to check if the user has entered the sequence correctly
 bool correctInput = true;
 
@@ -24,7 +24,7 @@ void loop() {
   //main code here,runs repeatedly:
   int currLvl = startLvl;
   //initialize array with random numbers
-  for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0]); i++){
+  for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
     randNum = random(0,6);
     lightSeq[i] = randNum; 
   }
