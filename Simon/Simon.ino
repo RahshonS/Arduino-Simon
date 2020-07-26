@@ -1,22 +1,25 @@
 //These pins will trigger the lights (more lights = higher difficulty)
 int pin[] = {2,3,5,7,9,11};
 //This variable will control how fast the lights will blink during the sequence (decreases as lvls increase)
-int blinkSpeed = 600;
+int startingSpeed = 900;
+int blinkSpeed;
 //This variable will control how long the game will pause in between levels. MAY BE STRICTLY FOR TESTING PURPOSES. 
 //Full game will halt until it receives and checks users input
 int wait = 1000;
 //Random value will be used to to trigger lights at random
 int randNum;
 //levels (start, max) will help dictate how long the light sequence gets and what lvl the player has reached
+//NOTE: Max level should be one more than the length of the light sequence
 int startingLvl = 0;
-int maxLvl = 6;
+int maxLvl = 11;
 //Array to hold the pin numbers (dictates the light sequence the user will repeat) 
 int lightSeq[5];
-int testSeq[] = {1, 3, 1, 4, 1, 5};
+int testSeq[] = {0, 1, 0, 2, 0, 3, 0, 3, 0, 4};
 //Boolean: Use to check if the user has entered the sequence correctly
 bool correctInput = true;
 //This variable will be used to set the difficulty
-String difficulty;
+char* difficulty[] = {"easy", "classic", "hard", "extreme"};
+char* feedback[] = {"Nice", "Uh-oh"};
 
 void setup() {
   // put your setup code here, to run once:
@@ -29,6 +32,7 @@ void setup() {
 void loop() {
   //main code here,runs repeatedly:
   int currLvl = startingLvl;
+  blinkSpeed = startingSpeed;
   //initialize array with random numbers from 0-5. 
   //These numbers determine the sequence of lights that will be triggered
   //these numbers directly correspond to the lights
@@ -46,9 +50,10 @@ void loop() {
     for(int j = 0; j < currLvl; j++){
       //trigger the corresponding lights up to the number of lights applicable for the level
       //1 additional light is added at each level
-      digitalWrite(pin[lightSeq[j]], HIGH);
+      digitalWrite(pin[testSeq[j]], HIGH);
       delay(blinkSpeed);
-      digitalWrite(pin[lightSeq[j]], LOW);
+      digitalWrite(pin[testSeq[j]], LOW);
+      blinkSpeed -= 10;
     }
     delay(wait);
       
