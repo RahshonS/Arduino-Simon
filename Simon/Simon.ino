@@ -25,7 +25,7 @@ char classic[] = "classic";
 char hard[] = "hard";
 char extreme[] = "extreme";
 //This variable will hold the difficulty. Will be chosen by the player
-char diffMode[8];
+//char diffMode[8];
 
 
 void setup() {
@@ -40,12 +40,34 @@ void loop() {
   //main code here,runs repeatedly:
   int currLvl = startingLvl;
   blinkSpeed = startingSpeed;
-  //initialize array with random numbers from 0-5. 
+  char diffMode[] = "easy";
+  
+  //initialize array with random numbers (dependent upon the level). 
   //These numbers determine the sequence of lights that will be triggered
-  //these numbers directly correspond to the lights
-  for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
-    randNum = random(0,4);
-    lightSeq[i] = randNum; 
+  //these random numbers directly correspond to the lights
+  if(diffMode == "easy"){
+    for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
+      randNum = random(0,3);
+      lightSeq[i] = randNum; 
+    }
+  }
+  else if(diffMode == "classic"){
+    for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
+      randNum = random(0,4);
+      lightSeq[i] = randNum; 
+    }
+  }
+  else if(diffMode == "hard"){
+    for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
+      randNum = random(0,5);
+      lightSeq[i] = randNum; 
+    }
+  }
+  else if(diffMode == "extreme"){
+    for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
+      randNum = random(0,6);
+      lightSeq[i] = randNum; 
+    }
   }
   
   //while players current level < max level
