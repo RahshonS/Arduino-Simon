@@ -13,8 +13,9 @@ int randNum;
 //NOTE: Max level should be one more than the length of the light sequence
 int startingLvl = 0;
 int maxLvl = 11;
-//Array to hold the pin numbers (dictates the light sequence the user will repeat) 
-int lightSeq[5];
+//Array to hold the pin numbers (dictates the light sequence the user will repeat
+//LIGHT SEQ SHOULD BE ONE LESS THAN THE MAX LEVEL
+int lightSeq[10];
 int testSeq[] = {0, 1, 0, 2, 0, 3, 0, 3, 0, 5};
 //Boolean: Use to check if the user has entered the sequence correctly
 bool correctInput = true;
@@ -43,7 +44,7 @@ void loop() {
   //These numbers determine the sequence of lights that will be triggered
   //these numbers directly correspond to the lights
   for(int i = 0; i < (sizeof(lightSeq) / sizeof(lightSeq[0])); i++){
-    randNum = random(0,3);
+    randNum = random(0,4);
     lightSeq[i] = randNum; 
   }
   
@@ -56,9 +57,9 @@ void loop() {
     for(int j = 0; j < currLvl; j++){
       //trigger the corresponding lights up to the number of lights applicable for the level
       //1 additional light is added at each level
-      digitalWrite(pin[testSeq[j]], HIGH);
+      digitalWrite(pin[lightSeq[j]], HIGH);
       delay(blinkSpeed);
-      digitalWrite(pin[testSeq[j]], LOW);
+      digitalWrite(pin[lightSeq[j]], LOW);
       blinkSpeed -= 5;
     }
     delay(wait);
