@@ -19,13 +19,13 @@ int lightSeq[10];
 int testSeq[] = {0, 1, 0, 2, 0, 3, 0, 3, 0, 5};
 //Boolean: Use to check if the user has entered the sequence correctly
 bool correctInput = true;
-//This variable will be used to set the difficulty
+//These variable will be used to set the difficulty
 int easy = 1;
 int classic = 2;
 int hard = 3;
 int extreme = 4;
-//This variable will hold the difficulty. Will be chosen by the player
-//char diffMode[8];
+//This array will hold the difficulties. Difficulty will be select by the player
+int diffMode[4] = {easy, classic, hard, extreme};
 
 
 void setup() {
