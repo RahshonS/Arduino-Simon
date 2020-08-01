@@ -29,7 +29,7 @@ int diffMode[4] = {easy, classic, hard, extreme};
 
 
 //Button Setup 
-int readPin = 10;     //designated read pin for the time being 
+int readPin = 12;     //designated read pin for the time being 
 int valRead;
 
 
@@ -45,6 +45,7 @@ void setup() {
 }
 
 void loop() {
+  /*
   //main code here,runs repeatedly:
   int currLvl = startingLvl;
   blinkSpeed = startingSpeed;
@@ -94,23 +95,23 @@ void loop() {
       blinkSpeed -= 5;
     }
     delay(wait);
+    */
 
-    //To use the button
+    //BUTTON CODE
     valRead = digitalRead(readPin);
-    //Case: circuit is open, no current flow, 1 is returned 
+    //Case: circuit is open, no current flow, 1 is returned by digital read
     if(valRead == 1){ 
       //basically awaiting output
+      digitalWrite(pin[3], LOW);
     }
-    //Case: cicuit is short (closed), current is flowing, 0 is returned 
+    //Case: cicuit is short (closed), current is flowing, 0 is returned by digital read
     else if(valRead == 0){
       //if the player is pressing, then input needs to be read and stored
       //lights need to be triggered each time a button is pressed
+      digitalWrite(pin[3], HIGH);
     }
     
       
     
   }
    
-    
-
-}
